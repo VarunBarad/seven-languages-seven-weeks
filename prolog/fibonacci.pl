@@ -1,4 +1,3 @@
-fibonacci(0, []).
 fibonacci(1, [0]).
 fibonacci(2, [1, 0]).
 fibonacci(N, [R, X, Y | Z]) :-
