@@ -59,8 +59,8 @@ object UrlSystem {
   final case class CalculateSize(urls: List[String])
 
   def apply(): Behavior[CalculateSize] = Behaviors.receive { (context, message) =>
+    val actor = context.spawn(UrlSizer(), "actor")
     for (url <- message.urls) {
-      val actor = context.spawn(UrlSizer(), ("boo" + url.replaceAll("[^a-zA-Z0-9]", "")))
       actor ! UrlSizer.Url(url)
     }
     Behaviors.same
